@@ -1,0 +1,588 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Timepieces - Exquisite Watches</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        :root {
+            /* Light Mode Defaults */
+            --primary-color: #333;
+            --secondary-color: #555;
+            --accent-color: #A08A6F; /* A gold/bronze tone for elegance */
+            --light-bg: #F8F8F8;
+            --dark-bg: #222; /* Used for header/footer in light mode */
+            --text-light: #EEE; /* Used for text on dark backgrounds */
+            --text-dark: #333; /* Used for text on light backgrounds */
+            --card-bg: #FFFFFF;
+            --border-color: #ddd;
+            --shadow-color: rgba(0,0,0,0.05);
+            --header-footer-text: var(--text-light);
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        /* Dark Mode Overrides */
+        body.dark-mode {
+            --primary-color: #F8F8F8; /* Light text on dark bg */
+            --secondary-color: #BBB;
+            --accent-color: #D4AF37; /* A brighter gold for dark mode */
+            --light-bg: #2A2A2A; /* Dark background */
+            --dark-bg: #1A1A1A; /* Even darker for header/footer */
+            --text-light: #333; /* Text on a light area (e.g., watch card if it stays light) */
+            --text-dark: #F8F8F8; /* Text on dark areas */
+            --card-bg: #333333;
+            --border-color: #444;
+            --shadow-color: rgba(0,0,0,0.3);
+            --header-footer-text: #F8F8F8; /* Ensure header/footer text is light */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            transition: background-color 0.3s ease;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none; /* Added for button styling consistency */
+            cursor: pointer; /* Added for button styling consistency */
+        }
+
+        .btn:hover {
+            background-color: #8C785F; /* Slightly darker accent */
+            /* Dark mode specific hover */
+            background-color: var(--accent-color); /* Fallback */
+            filter: brightness(0.9); /* Darken slightly for hover */
+        }
+        body.dark-mode .btn:hover {
+             filter: brightness(1.1); /* Lighten slightly for hover in dark mode */
+        }
+
+
+        .btn-small {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
+            border: none; /* Added for button styling consistency */
+            cursor: pointer; /* Added for button styling consistency */
+        }
+
+        .btn-small:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Header */
+        header {
+            background: var(--dark-bg);
+            color: var(--header-footer-text);
+            padding: 20px 0;
+            border-bottom: 3px solid var(--accent-color);
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            color: var(--header-footer-text);
+            font-size: 2.2em;
+            margin-bottom: 0;
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--header-footer-text);
+            font-weight: bold;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Mode Toggle Button */
+        #mode-toggle {
+            background: none;
+            border: 2px solid var(--accent-color);
+            color: var(--header-footer-text);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        #mode-toggle:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+
+        /* Hero Section */
+        #hero {
+            background: url('https://via.placeholder.com/1500x800?text=Elegant+Watch+Hero') no-repeat center center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 100px 20px;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Overlay for readability */
+            transition: background-color 0.3s ease;
+        }
+        body.dark-mode #hero::before {
+            background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for dark mode */
+        }
+
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-content h2 {
+            color: #fff;
+            font-size: 3.8em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Collections Section */
+        #collections {
+            padding: 80px 0;
+            background-color: var(--card-bg); /* Use card-bg for collections section background */
+            transition: background-color 0.3s ease;
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .watch-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .watch-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            /* Dark mode specific hover shadow */
+            box-shadow: 0 8px 15px var(--shadow-color);
+            filter: brightness(1.05); /* Slightly lighten card on hover in dark mode */
+        }
+        body.dark-mode .watch-card:hover {
+            filter: brightness(1.05); /* Slightly lighten card on hover in dark mode */
+        }
+
+        .watch-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .watch-card h3 {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .watch-card p {
+            font-size: 0.95em;
+            color: var(--secondary-color);
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+
+        /* About Section */
+        #about {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            font-size: 1.1em;
+            color: var(--secondary-color);
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 80px 0;
+            background-color: var(--card-bg); /* Use card-bg for contact section background */
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            background-color: var(--card-bg); /* Ensure form background is consistent */
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: var(--font-body);
+            background-color: var(--light-bg); /* Input background */
+            color: var(--text-dark);
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: var(--header-footer-text);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 3px solid var(--accent-color);
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .social-links img {
+            width: 24px;
+            height: 24px;
+            filter: invert(100%); /* Make icons white for dark background */
+            transition: transform 0.2s ease, filter 0.3s ease;
+        }
+        body.dark-mode .social-links img {
+             filter: invert(0%); /* Make icons dark for dark background if they are inherently light */
+             /* Or, if icons are inherently dark, keep invert(100%) for visibility on dark mode */
+             /* For placeholder, invert(0%) makes it black on dark background which isn't ideal */
+             /* Let's keep invert(100%) for both for simplicity with placeholder */
+             filter: invert(100%);
+        }
+
+        .social-links img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            #mode-toggle {
+                margin-top: 15px;
+                margin-left: 0;
+            }
+
+            .hero-content h2 {
+                font-size: 2.8em;
+            }
+
+            .hero-content p {
+                font-size: 1.1em;
+            }
+
+            .collection-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Elegant Timepieces</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="mode-toggle">Toggle Dark Mode</button>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h2>Timeless Elegance on Your Wrist</h2>
+            <p>Discover our curated collection of exquisite watches that blend precision engineering with sophisticated design.</p>
+            <a href="#collections" class="btn">Explore Collections</a>
+        </div>
+    </section>
+
+    <section id="collections" class="container">
+        <h2>Our Exquisite Collections</h2>
+        <div class="collection-grid">
+            <div class="watch-card">
+                <img src="https://m.media-amazon.com/images/I/61EnEFm1KyL._SX679_.jpg" alt="Classic Watch">
+                <h3>Classic Collection</h3>
+                <p>Embrace timeless design with our traditional and elegant watches.</p>
+                <a href="#" class="btn-small">View Details</a>
+            </div>
+            <div class="watch-card">
+                <img src="https://m.media-amazon.com/images/I/71HOL-E5UHL._SX679_.jpg" alt="Modern Watch">
+                <h3>Modern Collection</h3>
+                <p>Cutting-edge design meets precision in our contemporary timepieces.</p>
+                <a href="#" class="btn-small">View Details</a>
+            </div>
+            <div class="watch-card">
+                <img src="https://th.bing.com/th?id=OPAC.0LmB%2bU6pvCWfrA474C474&w=592&h=550&o=5&dpr=1.1&pid=21.1" alt="Luxury Watch">
+                <h3>Luxury Collection</h3>
+                <p>Indulge in unparalleled luxury with our premium, handcrafted watches.</p>
+                <a href="#" class="btn-small">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2>About Elegant Timepieces</h2>
+        <p>At Elegant Timepieces, we are passionate about the art of watchmaking. We meticulously select each watch in our collection, ensuring it meets our high standards of craftsmanship, accuracy, and aesthetic appeal. Our mission is to provide discerning individuals with timepieces that are not just instruments for telling time, but heirlooms to cherish for generations.</p>
+        <p>From the intricate movements to the finest materials, every detail is considered. We collaborate with renowned watchmakers and emerging talents to bring you a diverse range of styles, from classic to contemporary, ensuring there's a perfect watch for every taste and occasion.</p>
+    </section>
+
+    <section id="contact" class="container">
+        <h2>Get In Touch</h2>
+        <p>Have a question or need assistance? Feel free to reach out to us.</p>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Elegant Timepieces. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><img src="https://via.placeholder.com/24x24?text=FB" alt="Facebook"></a>
+                <a href="#"><img src="https://via.placeholder.com/24x24?text=IG" alt="Instagram"></a>
+                <a href="#"><img src="https://via.placeholder.com/24x24?text=TW" alt="Twitter"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+
+        // Check for saved mode preference
+        const savedMode = localStorage.getItem('theme');
+        if (savedMode) {
+            body.classList.add(savedMode);
+            if (savedMode === 'dark-mode') {
+                modeToggle.textContent = 'Toggle Light Mode';
+            } else {
+                modeToggle.textContent = 'Toggle Dark Mode';
+            }
+        } else {
+            // Default to light mode if no preference is saved
+            body.classList.remove('dark-mode');
+            modeToggle.textContent = 'Toggle Dark Mode';
+        }
+
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                modeToggle.textContent = 'Toggle Light Mode';
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                modeToggle.textContent = 'Toggle Dark Mode';
+                localStorage.setItem('theme', 'light-mode'); // Explicitly save light mode
+            }
+        });
+    </script>
+</body>
+</html>

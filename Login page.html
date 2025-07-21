@@ -1,0 +1,105 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Login Page</title>
+  <style>
+    /* Basic reset and font styling */
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Full viewport height, centered content with a gradient background */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #84fab0, #8fd3f4);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Styles for the login container */
+    .login-container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px; /* Limits the width on larger screens */
+    }
+
+    /* Centered heading within the container */
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    /* Styling for input fields */
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Styling for the login button */
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #00b894; /* Green button */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease; /* Smooth hover effect */
+    }
+
+    /* Hover effect for the button */
+    button:hover {
+      background-color: #019874; /* Darker green on hover */
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 500px) {
+      .login-container {
+        padding: 1rem;
+        margin: 1rem; /* Add some margin to prevent sticking to edges */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Log In</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevents the form from submitting in the traditional way
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Client-side validation: Checks if username is 'admin' and password is '12345'
+      if (username === 'admin' && password === '12345') {
+        alert('Login successful! Redirecting to another website...');
+        // *** IMPORTANT: Change the URL below to the website you want to redirect to ***
+        window.location.href = 'https://www.youtube.com';
+      } else {
+        alert('Login failed: Invalid username or password.');
+      }
+    });
+  </script>
+</body>
+</html>

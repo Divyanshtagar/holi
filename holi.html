@@ -1,0 +1,162 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Holi!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+      font-family: 'Nunito', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      perspective: 1000px; /* For 3D effects */
+    }
+
+    .card {
+      background: linear-gradient(145deg, #ffffff, #f0f0f0);
+      padding: 50px;
+      border-radius: 25px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25), 0 5px 15px rgba(0,0,0,0.15);
+      text-align: center;
+      position: relative;
+      z-index: 2; /* Ensure card is above splashes */
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+      animation: cardPop 1s ease-out forwards;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+    }
+
+    .card h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 4.5em;
+      color: #ff6b6b; /* A more vibrant red */
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      animation: fadeInDown 2s ease-in-out;
+      letter-spacing: 2px;
+    }
+
+    .card p {
+      font-size: 1.4em;
+      color: #333;
+      margin-top: 15px;
+      line-height: 1.6;
+      animation: fadeInUp 2.5s ease-in-out;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .colors {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1; /* Below the card */
+      overflow: hidden;
+    }
+
+    .color-splash {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      opacity: 0; /* Start hidden */
+      filter: blur(10px); /* Soften the edges */
+      animation: splashFloat 8s infinite ease-in-out;
+    }
+
+    /* Individual splash styles for more vibrant colors */
+    .color-splash:nth-child(1) {
+      background: rgba(255, 99, 71, 0.7); /* Tomato */
+      top: 10%; left: 10%;
+      animation-delay: 0s;
+      animation-duration: 9s;
+    }
+    .color-splash:nth-child(2) {
+      background: rgba(60, 179, 113, 0.7); /* Medium Sea Green */
+      top: 30%; left: 80%;
+      animation-delay: 1.5s;
+      animation-duration: 7s;
+    }
+    .color-splash:nth-child(3) {
+      background: rgba(65, 105, 225, 0.7); /* Royal Blue */
+      top: 70%; left: 20%;
+      animation-delay: 3s;
+      animation-duration: 10s;
+    }
+    .color-splash:nth-child(4) {
+      background: rgba(255, 215, 0, 0.7); /* Gold */
+      top: 50%; left: 50%;
+      animation-delay: 4.5s;
+      animation-duration: 8s;
+    }
+    .color-splash:nth-child(5) {
+      background: rgba(138, 43, 226, 0.7); /* Blue Violet */
+      top: 20%; left: 40%;
+      animation-delay: 0.5s;
+      animation-duration: 7.5s;
+    }
+    .color-splash:nth-child(6) {
+      background: rgba(255, 140, 0, 0.7); /* Dark Orange */
+      top: 80%; left: 60%;
+      animation-delay: 2.5s;
+      animation-duration: 9.5s;
+    }
+
+    /* Keyframe Animations */
+    @keyframes cardPop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes splashFloat {
+      0% {
+        transform: translate(0, 0) scale(0.5) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate(calc(var(--rand-x) * 1px), calc(var(--rand-y) * 1px)) scale(1.5) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Happy Holi!</h1>
+    <p>Wishing you a festival filled with vibrant colors of joy, laughter, and togetherness. May your life be as colorful and cheerful as this beautiful day!</p>
+    <div class="colors">
+      <div class="color-splash" style="--rand-x: 200; --rand-y: 150;"></div>
+      <div class="color-splash" style="--rand-x: -100; --rand-y: 250;"></div>
+      <div class="color-splash" style="--rand-x: 300; --rand-y: -100;"></div>
+      <div class="color-splash" style="--rand-x: -250; --rand-y: -200;"></div>
+      <div class="color-splash" style="--rand-x: 150; --rand-y: -300;"></div>
+      <div class="color-splash" style="--rand-x: -350; --rand-y: 100;"></div>
+    </div>
+  </div>
+</body>
+</html>
